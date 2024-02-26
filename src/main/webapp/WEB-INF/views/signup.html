@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+
+        .page .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .page .header .logo {
+            margin-bottom: 15px;
+        }
+
+        .page .container {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        .page .container label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .page .container input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dbdbdb;
+            margin-bottom: 10px;
+        }
+
+        .page .container button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #0095f6;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .page .container button:hover {
+            background-color: #0077b5;
+        }
+
+        @media only screen and (max-width: 400px) {
+            .page {
+                width: 250px;
+            }
+            .page .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Registration</h1>
+<form th:action="@{/signUp/signup}" method="POST" th:object="${newUser}">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" th:field="*{user_name}" required placeholder="Username"><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" th:field="*{password}" required placeholder="Password"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" th:field="*{email}" required placeholder="Email"
+           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+           title="Please enter a valid email address"><br>
+
+    <label for="phone_number">Phone number:</label><br>
+    <input type="phone_number" id="phone_number" name="phone_number" th:field="*{phone_number}" required
+           placeholder="Phone number"
+           pattern="^\+996\d{9}$" title="Phone number must start with +996 and be 13 characters long"
+           maxlength="13"><br><br>
+    <button type="submit">Sign up</button>
+</form>
+</body>
+</html>
